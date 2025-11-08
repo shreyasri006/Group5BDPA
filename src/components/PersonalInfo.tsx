@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Skill, RoleDefinition, UserProfile } from '../types';
 import collegesData from '../data/colleges.json';
 import { useTheme } from '../contexts/ThemeContext';
+import { useSchoolColors } from '../contexts/SchoolColorsContext';
 import './PersonalInfo.css';
 
 interface PersonalInfoProps {
@@ -21,6 +22,16 @@ export function PersonalInfo({ skills, roles, onComplete }: PersonalInfoProps) {
   const totalSteps = 2;
   const colleges = collegesData as string[];
   const { theme } = useTheme();
+  const { setSelectedSchool } = useSchoolColors();
+
+  // Update school colors when school selection changes
+  useEffect(() => {
+    if (school && school.trim().length > 0) {
+      setSelectedSchool(school);
+    } else {
+      setSelectedSchool(null);
+    }
+  }, [school, setSelectedSchool]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

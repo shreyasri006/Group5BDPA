@@ -60,21 +60,42 @@
 .aspyr-logo {
   font-size: clamp(4rem, 10vw, 7rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: 0.1em;
   margin: 0;
   position: relative;
   z-index: 2;
+  /* Solid white text - always visible */
+  color: #ffffff;
+  /* Strong glow effect for visibility and visual appeal */
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 1),
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 30px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(255, 255, 255, 0.7),
+    0 0 60px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+  /* Remove any gradient text that might make it invisible */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .dark .aspyr-logo {
-  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 1),
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 30px rgba(167, 139, 250, 0.9),
+    0 0 40px rgba(167, 139, 250, 0.8),
+    0 0 60px rgba(167, 139, 250, 0.7),
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .logo-letter {

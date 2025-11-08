@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f5f7fa;
+  background-color: var(--secondary, #f5f7fa);
   transition: background-color 0.3s ease;
 }
 
@@ -18,15 +18,15 @@
 }
 
 .app-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background-color: var(--primary, #667eea);
+  color: var(--primary-contrast, #fff);
   padding: 3rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app.dark .app-header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background-color: var(--primary, #1a1a2e);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -35,11 +35,10 @@
   font-weight: 700;
   margin-bottom: 0.75rem;
   text-align: center;
-  background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-contrast, #fff);
+  transition: color 0.3s ease;
 }
+
 
 .app-subtitle {
   font-size: 1.15rem;
@@ -48,6 +47,8 @@
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
+  color: var(--primary-contrast, #fff);
+  transition: color 0.3s ease;
 }
 
 .app-user-info {
@@ -56,11 +57,15 @@
   opacity: 0.9;
   margin-top: 0.5rem;
   font-weight: 500;
+  color: var(--primary-contrast, #fff);
+  transition: color 0.3s ease;
 }
 
 .app-main {
   flex: 1;
   padding: 2rem 0;
+  background-color: var(--secondary, #f5f7fa);
+  transition: background-color 0.3s ease;
 }
 
 .app-content {
@@ -138,12 +143,13 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
-  transition: background 0.3s ease;
+  background-color: var(--secondary, #f5f7fa);
+  transition: background-color 0.3s ease;
 }
 
+
 .skills-page.dark {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background-color: var(--secondary, #1a1a2e);
 }
 
 .skills-page-container {
@@ -185,18 +191,12 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all 0.3s ease;
+  color: var(--primary, #667eea);
+  transition: color 0.3s ease;
 }
 
 .skills-page.dark .skills-page-title {
-  background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary, #a78bfa);
 }
 
 .skills-page-subtitle {
@@ -225,7 +225,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: var(--primary, #667eea);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -234,6 +234,7 @@
   position: relative;
   overflow: hidden;
 }
+
 
 .btn-primary-large::before {
   content: '';
@@ -322,24 +323,4 @@
   .skills-page-title {
     font-size: 1.75rem;
   }
-  /* Use the dynamic school colors */
-.app-header {
-  background: var(--primary);
-  color: var(--primary-contrast, #fff); /* primary-contrast set by hook (fallback white) */
-  transition: background-color 200ms ease, color 200ms ease;
-}
-
-/* Make the main dashboard area use secondary */
-.app-main {
-  background: var(--secondary);
-  color: inherit; /* inherit text color or set explicitly */
-  transition: background-color 200ms ease, color 200ms ease;
-}
-
-/* If you want header content to remain readable */
-.app-header .app-title,
-.app-header .app-subtitle,
-.app-header .app-user-info {
-  color: var(--primary-contrast, #fff);
-}
 }

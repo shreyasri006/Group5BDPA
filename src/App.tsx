@@ -9,6 +9,7 @@ import { RoleSelection } from './components/RoleSelection';
 import { ResultsDashboard } from './components/ResultsDashboard';
 import { LearningPath } from './components/LearningPath';
 import { useTheme } from './contexts/ThemeContext';
+import { useSchoolColors } from './contexts/SchoolColorsContext';
 import './App.css';
 
 type AppStep = 'landing' | 'personal-info' | 'skills' | 'dashboard';
@@ -23,6 +24,14 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState<GapAnalysisResult | null>(null);
   const [currentStep, setCurrentStep] = useState<AppStep>('landing');
   const { theme } = useTheme();
+  const { setSelectedSchool } = useSchoolColors();
+
+  // Restore school colors when userProfile loads
+  useEffect(() => {
+    if (userProfile?.school) {
+      setSelectedSchool(userProfile.school);
+    }
+  }, [userProfile?.school, setSelectedSchool]);
 
   // Load data on mount
   useEffect(() => {

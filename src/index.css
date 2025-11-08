@@ -21,8 +21,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Dynamic school theme colors (updated by useSchoolColors hook) */
-  --primary: #27251f;
+  --primary: #667eea;
   --secondary: #f5f7fa;
+  --primary-contrast: #FFFFFF;
 }
 
 :root.dark {
