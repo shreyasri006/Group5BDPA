@@ -23,20 +23,43 @@ A web application that helps students compare their current skills to entry-leve
 
 - Node.js (v18 or higher)
 - npm or yarn
+- (Optional) OpenAI API key for GPT-powered project suggestions
 
 ### Installation
 
-1. Install dependencies:
+1. **Clone or download the repository**
+
+2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-2. Start the development server:
+3. **Set up environment variables (Optional):**
+   
+   For GPT-powered project suggestions, you need an OpenAI API key:
+   
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   
+   - Open `.env` file and replace `YOUR_OPENAI_API_KEY_HERE` with your actual OpenAI API key:
+     ```
+     VITE_OPENAI_API_KEY=sk-your-actual-api-key-here
+     ```
+   
+   - Get your API key from: https://platform.openai.com/api-keys
+   
+   **Note:** The app works without the API key - it will use fallback project suggestions instead.
+
+4. **Start the development server:**
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:5173`
+5. **Open your browser:**
+   - Navigate to `http://localhost:5173`
+   - The app will automatically open in your default browser
 
 ### Building for Production
 

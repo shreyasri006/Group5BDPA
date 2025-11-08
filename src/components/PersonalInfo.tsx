@@ -1,26 +1,26 @@
 import { useState } from 'react';
 import type { Skill, RoleDefinition, UserProfile } from '../types';
-import { SkillsInput } from './SkillsInput';
 import collegesData from '../data/colleges.json';
-import './LandingPage.css';
+import { useTheme } from '../contexts/ThemeContext';
+import './PersonalInfo.css';
 
-interface LandingPageProps {
+interface PersonalInfoProps {
   skills: Skill[];
   roles: RoleDefinition[];
   onComplete: (profile: UserProfile) => void;
 }
 
-export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
+export function PersonalInfo({ skills, roles, onComplete }: PersonalInfoProps) {
   const [name, setName] = useState('');
   const [isStudent, setIsStudent] = useState<boolean>(true);
   const [school, setSchool] = useState('');
   const [graduationYear, setGraduationYear] = useState('');
   const [experienceLevel, setExperienceLevel] = useState<UserProfile['experienceLevel']>('student');
   const [dreamRoleId, setDreamRoleId] = useState<string | null>(null);
-  const [userSkills, setUserSkills] = useState<string[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const totalSteps = 2;
   const colleges = collegesData as string[];
+  const { theme } = useTheme();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,20 +31,16 @@ export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
       graduationYear: graduationYear.trim() || undefined,
       experienceLevel,
       dreamRole: dreamRoleId || undefined,
-      skills: userSkills,
+      skills: [], // Skills will be added in the next step
     };
     onComplete(profile);
   };
 
   const canProceed = () => {
     if (currentStep === 1) {
-      // If student, school is required; if not student, no school needed
       return !isStudent || school.trim().length > 0;
     }
     if (currentStep === 2) {
-      return userSkills.length > 0;
-    }
-    if (currentStep === 3) {
       return dreamRoleId !== null;
     }
     return false;
@@ -63,12 +59,12 @@ export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
   };
 
   return (
-    <div className="landing-page">
-      <div className="landing-container">
-        <div className="landing-header">
-          <h1 className="landing-title">Welcome to CareerPath</h1>
-          <p className="landing-subtitle">
-            Let's get to know you better so we can create a personalized career path
+    <div className={`personal-info-page ${theme}`}>
+      <div className="personal-info-container">
+        <div className="personal-info-header">
+          <h1 className="personal-info-title">Tell Us About Yourself</h1>
+          <p className="personal-info-subtitle">
+            Help us create a personalized career path just for you
           </p>
           <div className="progress-bar">
             <div 
@@ -79,11 +75,10 @@ export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
           <p className="step-indicator">Step {currentStep} of {totalSteps}</p>
         </div>
 
-        <form className="landing-form" onSubmit={handleSubmit}>
+        <form className="personal-info-form" onSubmit={handleSubmit}>
           {/* Step 1: Basic Info */}
           {currentStep === 1 && (
             <div className="form-step">
-              <h2 className="step-title">Tell Us About Yourself</h2>
               <div className="form-group">
                 <label htmlFor="name" className="form-label">
                   Name <span className="optional">(optional)</span>
@@ -183,23 +178,8 @@ export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
             </div>
           )}
 
-          {/* Step 2: Skills */}
+          {/* Step 2: Dream Role */}
           {currentStep === 2 && (
-            <div className="form-step">
-              <h2 className="step-title">What Are Your Skills?</h2>
-              <p className="step-description">
-                Add the skills you currently have. Don't worry if the list is short - we'll help you identify what to learn next!
-              </p>
-              <SkillsInput
-                skills={skills}
-                userSkills={userSkills}
-                onSkillsChange={setUserSkills}
-              />
-            </div>
-          )}
-
-          {/* Step 3: Dream Role */}
-          {currentStep === 3 && (
             <div className="form-step">
               <h2 className="step-title">What's Your Dream Role?</h2>
               <p className="step-description">
@@ -259,7 +239,7 @@ export function LandingPage({ skills, roles, onComplete }: LandingPageProps) {
                 disabled={!canProceed()}
                 className="btn btn-primary btn-large"
               >
-                Get My Career Path →
+                Continue →
               </button>
             )}
           </div>

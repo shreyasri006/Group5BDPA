@@ -1,4 +1,5 @@
 import type { RoleDefinition } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 import './RoleSelection.css';
 
 interface RoleSelectionProps {
@@ -8,13 +9,14 @@ interface RoleSelectionProps {
 }
 
 export function RoleSelection({ roles, selectedRoleId, onRoleSelect }: RoleSelectionProps) {
+  const { theme } = useTheme();
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const roleId = e.target.value;
     onRoleSelect(roleId === '' ? null : roleId);
   };
 
   return (
-    <div className="role-selection-container">
+    <div className={`role-selection-container ${theme}`}>
       <label htmlFor="role-select" className="role-selection-label">
         Choose Your Target Role
       </label>
