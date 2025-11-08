@@ -322,4 +322,24 @@
   .skills-page-title {
     font-size: 1.75rem;
   }
+  /* Use the dynamic school colors */
+.app-header {
+  background: var(--primary);
+  color: var(--primary-contrast, #fff); /* primary-contrast set by hook (fallback white) */
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Make the main dashboard area use secondary */
+.app-main {
+  background: var(--secondary);
+  color: inherit; /* inherit text color or set explicitly */
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* If you want header content to remain readable */
+.app-header .app-title,
+.app-header .app-subtitle,
+.app-header .app-user-info {
+  color: var(--primary-contrast, #fff);
+}
 }

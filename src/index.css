@@ -19,6 +19,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Dynamic school theme colors (updated by useSchoolColors hook) */
+  --primary: #27251f;
+  --secondary: #f5f7fa;
 }
 
 :root.dark {
@@ -30,7 +34,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: var(--secondary);
   transition: background-color 0.3s ease;
 }
 
